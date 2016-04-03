@@ -25,7 +25,7 @@ endif
 
 # Add inputs and outputs from these tool invocations to the build variables 
 
-GCC_PREFIX = arm-eabi-
+GCC_PREFIX = arm-none-eabi-
 
 # Tool invocations
 IBDAP.axf: $(OBJS) $(USER_OBJS)
@@ -44,8 +44,8 @@ clean:
 post-build:
 	-@echo 'Performing post-build steps'
 	$(GCC_PREFIX)size "IBDAP.axf"
-	$(GCC_PREFIX)objcopy -v -O binary "IBDAP.axf" "IBDAP.bin" 	
-	checksum -p LPC11U35_401 -d "IBDAP.bin"
+	$(GCC_PREFIX)objcopy -v -O binary "IBDAP.axf" "IBDAP.bin" 
+	./checksum -p LPC11U35_401 -d "IBDAP.bin"
 	-@echo ' '
 
 .PHONY: all clean dependents
